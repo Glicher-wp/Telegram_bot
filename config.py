@@ -4,13 +4,13 @@ import pytz
 
 
 # Айди организации. Находится в профиле рекера.
-ORG_ID = "6085222"
+ORG_ID = os.environ.get('ORG_ID')
 
 # Токен приложения трекера.
-YANDEX_TOKEN = "AgAAAABOiBK4AAbi7aj5bQOPik9gtN78U4JxHmM"
+YANDEX_TOKEN = os.environ.get('YANDEX_TOKEN')
 
 # Токен вашего телеграмм бота.
-TELEGRAM_TOKEN = "1629283725:AAE8BXN2pwG_gM9v3z3FqckrDW_VrO7CiFc"
+TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
 
 # Задаем таймзону и время, чтобы отфильтровать новые задачи за последние 20 минут.
 tz = pytz.timezone("Europe/Moscow")
