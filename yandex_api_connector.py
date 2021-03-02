@@ -22,9 +22,15 @@ def get_user_tasks(user_id: str):
     """
     Функция фильтрует задачи по юзеру и возвращает список задач.
     """
+<<<<<<< HEAD
     # Код очереди - название очереди Яндекс.Трекер, которое отображается в http запросе.
     queue = client.queues["PERVAA"]
     # Фильтруем задачи по юзеру
+=======
+    #название приложения Яндекс.Трекер, которое отображается в http запросе
+    queue = client.queues["код очереди вашего трекера"]
+    #фильтруем задачи по юзеру
+>>>>>>> 6ef049c20aedf4d5cbfdc3bced7981885686d0bb
     filtered_issues = client.issues.find(filter={'queue': queue.key,
                                                  'assignee': user_id,
                                                  'status': ['open', 'inProgress']},
@@ -37,8 +43,16 @@ def get_latest_tasks_dict(user_id: str):
     """
     Функция фильтрует задачи по юзеру и времени и возвращает обновления за последние 20 миинут.
     """
+<<<<<<< HEAD
     queue = client.queues["PERVAA"]
     # Фильтруем задачи с учетом временных рамок.
+=======
+    queue = client.queues["код очереди вашего трекера"]
+    #задаем таймзону и время, чтобы отфильтровать новые задачи за последние 20 минут
+    tz = pytz.timezone("Europe/Moscow")
+    twenty_min_past = datetime.datetime.now(tz) - datetime.timedelta(minutes=20)
+    #фильтруем задачи с учетом временных рамок
+>>>>>>> 6ef049c20aedf4d5cbfdc3bced7981885686d0bb
     filtered_issues = client.issues.find(filter={'queue': queue.key,
                                                  'assignee': user_id,
                                                  'status': ['open', 'inProgress'],
