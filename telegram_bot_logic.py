@@ -17,12 +17,22 @@ from yandex_api_connector import get_tasks, get_latest_tasks
 
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(token=TELEGRAM_TOKEN)
+try:
+    bot = Bot(token=TELEGRAM_TOKEN)
+    logging.info("Бот создан")
+except Exception as ex:
+    logging.error("Ошибка при создании бота")
+    logging.error(str(ex))
+
 
 # Создаем хранилище данных для бота.
 storage = MemoryStorage()
-dp = Dispatcher(bot, storage=storage)
-
+try:
+    dp = Dispatcher(bot, storage=storage)
+    logging.info("Создан диспетчер")
+except Exception as ex:
+    logging.error("Ошибка при создании диспетчера")
+    logging.error(str(ex))
 
 # Класс в котором будем сохранять данные по email и ответам пользователя.
 class Form(StatesGroup):
@@ -215,4 +225,9 @@ async def loop_request(message: types.Message, state: FSMContext):
 
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    try:
+        executor.start_polling(dp, skip_updates=True)
+        logging.info("Бот запущен")
+    except Exception as ex:
+        logging.error("Ошибка возникла при запуске приложения")
+        logging.error(str(ex))
